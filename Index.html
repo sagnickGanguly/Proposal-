@@ -4,85 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Forever Proposal ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --velvet: #2d0a0a; --soft-pink: #f8edeb; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: var(--velvet); font-family: 'Montserrat', sans-serif; color: var(--soft-pink); }
-        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #4a0e0e 0%, #1a0505 100%); z-index: -2; }
-        #main-container { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; }
-        
-        /* The Photo Frame */
-        .photo-frame {
-            width: 280px; height: 280px; border-radius: 50%; border: 4px solid var(--gold);
-            padding: 8px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            margin-bottom: 30px; overflow: hidden; transition: transform 0.8s ease;
+        :root {
+            --gold: #d4af37;
+            --velvet: #2d0a0a;
+            --soft-pink: #f8edeb;
         }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transition: opacity 0.5s ease; }
 
-        h1 { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold); margin: 10px 0; }
-        .quote-box { font-size: 1.1rem; max-width: 80%; height: 60px; margin: 20px 0; font-style: italic; }
-        .reveal-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 40px; cursor: pointer; transition: 0.3s; }
-        .reveal-btn:hover { background: var(--gold); color: var(--velvet); }
-        
-        .petal { position: fixed; top: -10%; z-index: 100; pointer-events: none; animation: fall 8s linear infinite; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--velvet);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--soft-pink);
+        }
+
+        /* Animated Background Gradient */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #4a0e0e 0%, #1a0505 100%);
+            z-index: -2;
+        }
+
+        /* Floating Bokeh Effect */
+        .bokeh {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: move 20s linear infinite;
+        }
+
+        @keyframes move {
+            from { transform: translateY(0); }
+            to { transform: translateY(-500px); }
+        }
+
+        #main-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            padding: 8px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 2s ease-in-out;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin: 10px 0;
+            opacity: 0;
+            transition: opacity 2.5s ease;
+        }
+
+        .quote-box {
+            font-size: 1.2rem;
+            max-width: 600px;
+            font-style: italic;
+            height: 60px;
+            margin: 20px 0;
+            opacity: 0;
+        }
+
+        .reveal-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 15px 40px;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.5s;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reveal-btn:hover {
+            background: var(--gold);
+            color: var(--velvet);
+            box-shadow: 0 0 20px var(--gold);
+        }
+
+        .active .photo-frame { opacity: 1; transform: scale(1); }
+        .active h1 { opacity: 1; }
+        .active .quote-box { opacity: 1; animation: fadeIn 3s forwards; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Flower Petal Animation */
+        .petal {
+            position: fixed;
+            top: -10%;
+            z-index: 100;
+            pointer-events: none;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
+
     <div class="bg-overlay"></div>
+    <div class="bokeh"></div>
+
     <div id="main-container">
         <div class="photo-frame">
-            <img id="displayImage" src="photo1.jpg" alt="Beautiful Memories">
+            <img src="my-girl.jpg" alt="To the most beautiful girl">
         </div>
-        <h1 id="header">A Promise for You...</h1>
-        <div class="quote-box" id="quote">"Every moment with you is a blessing."</div>
-        <button class="reveal-btn" id="nextBtn">CLICK FOR MORE ❤️</button>
+
+        <h1 id="header">Will you stay by my side?</h1>
+        
+        <div class="quote-box" id="quote">
+            "Every love story is beautiful, but ours is my favorite."
+        </div>
+
+        <button class="reveal-btn" id="nextBtn">CLICK FOR A PROMISE</button>
     </div>
 
     <script>
-        // List your image filenames here
-        const images = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
         const quotes = [
-            "In a world of temporary things, you are my forever.",
-            "I found my soul’s missing piece in your smile.",
-            "Will you be mine, forever and always?"
+            "In a world of temporary things, you are my forever feeling.",
+            "I found my soul’s missing piece the moment you smiled at me.",
+            "They say home is a place, but for me, home has always been you.",
+            "You are the poetry my heart has been trying to write.",
+            "To the world, you might be one person, but to me, you are the whole world.",
+            "I want to be the reason you smile, today and every day after."
         ];
 
-        let index = 0;
+        let quoteIndex = 0;
         const btn = document.getElementById('nextBtn');
-        const imgElement = document.getElementById('displayImage');
+        const container = document.getElementById('main-container');
         const quoteText = document.getElementById('quote');
         const header = document.getElementById('header');
 
+        // Initial animation trigger
+        window.onload = () => {
+            container.classList.add('active');
+        };
+
         btn.addEventListener('click', () => {
-            index++;
-            if (index < images.length) {
-                // Change Image and Text
-                imgElement.style.opacity = 0;
+            if (quoteIndex < quotes.length) {
+                quoteText.style.opacity = 0;
                 setTimeout(() => {
-                    imgElement.src = images[index];
-                    quoteText.innerText = quotes[index];
-                    imgElement.style.opacity = 1;
-                }, 400);
+                    quoteText.innerText = quotes[quoteIndex];
+                    quoteText.style.opacity = 1;
+                    quoteIndex++;
+                }, 500);
             } else {
-                // Final Proposal Screen
                 header.innerText = "Happy Propose Day, Bachaaa! ❤️";
-                quoteText.innerHTML = "<strong>Will you be mine, forever and always.</strong>";
+                quoteText.innerHTML = "<strong>Will you be mine, forever and always?</strong>";
                 btn.style.display = 'none';
-                setInterval(createPetal, 200);
+                startHeartRain();
             }
         });
 
         function createPetal() {
             const petal = document.createElement('div');
             petal.classList.add('petal');
-            petal.innerHTML = '🌹';
+            petal.innerHTML = '🌸';
             petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            petal.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
             document.body.appendChild(petal);
-            setTimeout(() => petal.remove(), 8000);
+            setTimeout(() => petal.remove(), 10000);
         }
-        setInterval(createPetal, 1000);
+
+        function startHeartRain() {
+            setInterval(createPetal, 200);
+        }
+
+        // Slow float of background petals
+        setInterval(createPetal, 800);
     </script>
 </body>
 </html>
